@@ -6,13 +6,13 @@ int main()
 {
 	int n;
 	cin >> n;
-	vector<int> coins(n);
+	vector<int> v(n);
 	for(int i=0; i<n; i++)
-		cin >> coins[i];
-	vector<int> v(101);
+		cin >> v[i];
+	vector<int> num(4);
 	for(int i=0; i<n; i++)
-		v[coins[i]]++;
-	sort(v.begin(), v.end());
-	cout << v[100] << endl;
+		num[v[i]]++;
+	sort(num.begin(), num.end());
+	cout << num[1]+num[2] << endl;
 	return 0;
-}
+}  
