@@ -11,7 +11,7 @@ int main()
 		cin >> v[0] >> v[1] >> v[2];
 		sort(v.begin(), v.end());
 		if(v[0]== v[1] and v[1] == v[2])
-			cout << 0;
+			cout << 0 << endl;
 		else if(v[0] == v[1] and v[2]-v[1] == 1)
 		{
 			v[2]--;
