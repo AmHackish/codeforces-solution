@@ -3,18 +3,27 @@
 using namespace std;
 int main()
 {
-	int a,b,n;
-	cin >> a >> b >> n;
-	float time = 100000;
-	while(n--)
+	int n;
+	cin >> n;
+	char a[n][n];
+	for(int i=0; i<n; i++)
+		for(int j=0; j<n; j++)
+			cin >> a[i][j];
+	char c = a[0][1],X = a[0][0];
+	int k=0,l=0;
+	for(int i=0; i<n; i++)
 	{
-		int x,y,v;
-		cin >> x >> y >> v;
-		float dis = sqrt(((x-a)*(x-a)) + ((y-b)*(y-b)));
-		if((dis/v)<time)
-			time = dis/v;
-		
+		for(int j=0; j<n; j++)
+		{
+			if((i == j or j == n-1-i) and a[i][j] == X)
+				l++;
+			else if(i!=j and j!=n-1-i and a[i][j] == c)
+				k++;
+		}
 	}
-	cout << setprecision(20) << time << endl;
+	if(l == (n+n-1) and k == ((n*n)-(n+n-1)))
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
 	return 0;
 } 
