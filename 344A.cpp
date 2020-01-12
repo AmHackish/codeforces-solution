@@ -4,49 +4,59 @@ using namespace std;
  
 int main()
 {
-    int n,k;
-    cin >> n >> k;
-    int x;
-    cin >> x;
-    std::vector<int> v;
-    while(x>0)
+    int n;
+    cin >> n;
+    for(int i=0;i<n;i++)
     {
-        v.push_back(x%10);
-        x=x/10;
-    }
-    
-    int cnt=0;
-    for(int i=0;i<n and i+k<n; i++)
-        if(v[i] != v[i+k])
-            cnt++;
-    
-    if(cnt == 0)
-    {
-        cout << n << endl;
-        for(int i=v.size()-1;i>=0;i--)
-            cout << v[i];
-        cout << endl;
-    }
-    else
-    {
-        if(k<n)
-            v[n-1-k] = v[n-1];
-        if(n>2)
+        string s,t;
+        cin >> s >> t;
+        vector<int> a(26);
+        vector<int> b(26);
+        for(int j=0;j<s.length();j++)
+            a[s[j]-'a']++;
+        for(int j=0;j<t.length();j++)
+            b[t[j]-'a']++;
+        int cnt=0;
+        for(int k=0;k<26;k++)
         {
-            v[n-2]=v[n-2]+1;
-            v[n-2-k] = v[n-2];
+            if(a[k] == 0 and b[k]!=0)
+                cnt++;
+            if(a[k]>b[k] and a[k]!=0)
+                cnt++;
         }
-        else if(n>4)
+        if(cnt)
+            cout << "NO" << endl;
+        else
         {
-            for(int i=2;i<n/2;i++)
+            int k=0,j=0;
+            while(k<s.length() and j<t.length())
             {
-                if(v[i]!= v[i+k])
-                    v[i+k] == v[i];
+                if(s[k] == t[j])
+                {
+                    k++,j++;
+                                    }
+                else if(s[k]!=t[j] and t[j]!=t[j-1] and j!=0)
+                {
+                    cnt++;
+                    break;
+                }
+                else if(s[k]!=t[j] and t[j]==t[j-1] and j!=0)
+                {
+                    j++;
+                    
+                }
+                else if(s[k] !=t[j])
+                {
+                    cnt++;
+                    break;
+                }
             }
+            if(k!=s.length() and j == t.length() or cnt)
+                cout << "NO" << endl;
+            else
+                cout << "YES" << endl;
+        
         }
-        cout << n << endl;
-        for(int i=v.size()-1;i>=0;i--)
-            cout << v[i];
     }
     return 0;
 
