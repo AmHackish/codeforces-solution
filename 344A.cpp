@@ -6,57 +6,52 @@ int main()
 {
     int n;
     cin >> n;
-    for(int i=0;i<n;i++)
+    for(int j=0;j<n;j++)
     {
-        string s,t;
-        cin >> s >> t;
-        vector<int> a(26);
-        vector<int> b(26);
-        for(int j=0;j<s.length();j++)
-            a[s[j]-'a']++;
-        for(int j=0;j<t.length();j++)
-            b[t[j]-'a']++;
-        int cnt=0;
-        for(int k=0;k<26;k++)
+        string s;
+        cin >> s;
+        vector<int>v(4);
+        int len;
+        for(int i=0;i<s.length();i++)
         {
-            if(a[k] == 0 and b[k]!=0)
-                cnt++;
-            if(a[k]>b[k] and a[k]!=0)
-                cnt++;
+            if(s[i]=='L')
+                v[0]++;
+            if(s[i] == 'R')
+                v[1]++;
+            if(s[i]=='U')
+                v[2]++;
+            if(s[i]=='D')
+                v[3]++;
         }
-        if(cnt)
-            cout << "NO" << endl;
-        else
+        len = s.length()-abs(v[0]-v[1])-abs(v[2]-v[3]);
+        cout << len << endl;
+        vector<char>t(len);
+
+        if(len)
         {
-            int k=0,j=0;
-            while(k<s.length() and j<t.length())
+            int k = min(v[0],v[1]);
+            if(k!=0)
             {
-                if(s[k] == t[j])
-                {
-                    k++,j++;
-                                    }
-                else if(s[k]!=t[j] and t[j]!=t[j-1] and j!=0)
-                {
-                    cnt++;
-                    break;
-                }
-                else if(s[k]!=t[j] and t[j]==t[j-1] and j!=0)
-                {
-                    j++;
-                    
-                }
-                else if(s[k] !=t[j])
-                {
-                    cnt++;
-                    break;
-                }
+                for(int i=0;i<2*k;i=i+2)
+                    t[i] = 'L';
+                for(int i=1;i<2*k;i=i+2)
+                    t[i] = 'R';
             }
-            if(k!=s.length() and j == t.length() or cnt)
-                cout << "NO" << endl;
-            else
-                cout << "YES" << endl;
-        
+            int l = min(v[3],v[2]);
+            cout << l;
+            if(l!=0)
+            {
+                for(int i = (k*2)+1;i<len;i=1+2)
+                    t[i]='U';
+                for(int i=(k*2)+2;i<len;i=i+2)
+                    t[i]='R';
+            }
+            for(int i=0;i<len;i++)
+                cout << t[i] ;
+            cout << endl;
         }
+        else 
+            cout << endl;
     }
     return 0;
 
