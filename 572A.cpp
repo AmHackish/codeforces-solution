@@ -4,17 +4,13 @@ using namespace std;
 
 int main()
 {
-	int x,y,k,m;
-	cin >> x >> y >> k  >> m;
-	std::vector<int> a(x);
-	std::vector<int> b(y);
-	for(int i=0;i<x;i++)
-		cin >> a[i];
-	for(int j=0;j<y;j++)
-		cin >> b[j];
-	if(a[k-1]>=b[y-m])
-		cout << "NO" << endl;
-	else 
-		cout << "YES" << endl;
+	long long int a,b,ships=0;
+	cin >> a >> b;
+	while(a<=0 and a!=b)
+	{
+		ships++;
+		a=a-b;
+	}
+	cout << ships << endl;
 	return 0;
 }  
