@@ -4,38 +4,37 @@ int main()
 {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 	
-	int n,k;
-	cin >> n >> k;
+	string s;
+	cin >> s;
 
-	vector<int>a(n);
-	for(int i=0;i<n;i++)
-		cin >> a[i];
+	vector<string> name(5);
+	name[0] = "Danil";
+	name[1] = "Olya";
+	name[2] = "Salva";
+	name[3] = "Ann";
+	name[4] = "Nikita";
 
-	vector<int>sol;
-	vector<int>::iterator it;
-
-	int m=0;
-	for(int i=0;i<n;i++)
+	vector<int> v(5);
+	for(int j=0;j<5;j++)
 	{
-		it = find(sol.begin(),sol.end(),a[i]);
-		if(it !=sol.end())
-			continue;
-		else if(m<k and it == sol.end())
+		for(int i=0;i<=s.length()-name[j].length();i++)
 		{
-			sol.insert(sol.begin(),1,a[i]);
-			m++;
-		}
-		else
-		{
-			sol.erase(sol.begin()+sol.size()-1);
-			m--;
-			i--;
+			for(int k=0;k<name[j].length();k++)
+				if(s[i+k]!=name[j][k])
+					break;
+			if(k == name[j].length())
+				v[j]++;
 		}
 	}
-	cout << sol.size() << endl;
-	for(int j=0;j<sol.size();j++)
-			cout << sol[j] << " ";
-	cout << endl;
+	for(int i=0;i<5;i++)
+		cout << v[i] << endl;
+	sort(v.begin(),v.end());
+	if(v[4] == 0)
+		cout << "NO" << endl;
+	if(v[4]>=2)
+		cout << "NO" << endl;
+	if(v[4] == 3 and v[3] == 0)
+		cout << "YES" << endl;
 	return 0;
 }
   
