@@ -3,25 +3,17 @@ using namespace std;
 
 int main()
 {
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	
 	int n;
 	cin >> n;
-	vector<string> v(n);
-	for(int i=0;i<n;i++)
-		cin >> v[i];
-	int a=0,b=0;
-	string s = v[0];
-	for(int i=0;i<n;i++)
+	
+	while(n--)
 	{
-		if(v[0] == v[i])
-			b++;
-		else
-			a = i;
+		long long int n,m;
+		cin >> n >> m;
+		cout << n  << endl<< m;
 	}
-	string str=v[a];
-	if(b>(n-b))
-		cout << s << endl;
-	else
-		cout << str << endl;
 	return 0;
 
 }  
