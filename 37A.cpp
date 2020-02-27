@@ -4,35 +4,50 @@ int main()
 {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-	int t;
-	cin >> t;
-	
-	vector<long long int> v(t);
-	for(int i=0;i<t;i++)
+	int n;
+	cin >> n;
+
+	vector<int>v(n);
+	for(int i=0;i<n;i++)
 		cin >> v[i];
 
-	vector<pair<long long int,long long int> > c(t);
-	for(int i=0;i<t;i++)
-	{
-		c[i].second = i+1;
-		c[i].first = v[i];
-	}
-
 	sort(v.begin(),v.end());
-	if(t == 1)
-		cout << 1 << endl;
-	else if(v[0] == v[1])
-		cout << "Still Rozdil" << endl;
-	else
+
+	int k=0;
+	for(int i=0;i<n-2;i++)
 	{
-		 for(int i=0;i<t; i++)
-		 	if(c[i].first == v[0])
-		 	{
-		 		cout << c[i].second;
-		 		break;
-		 	}
+		if(v[i] == v[i+1] and v[i] == v[i+2])
+		{
+			cout << "NO" << endl;
+			return 0;
+		}
 	}
 
+	vector<int>a,b;
+
+	for(int i=0;i<n-1;i++)
+	{
+		if(v[i]==v[i+1])
+		{
+			a.push_back(v[i]);
+			i++;
+		}
+		b.push_back(v[i]);
+	}
+	if(v[n-1]!=v[n-2])
+		b.push_back(v[n-1]);
+	
+	cout << "YES" << endl << a.size() << endl;
+	for(int i=0;i<a.size();i++)
+		cout << a[i] << " ";
+	
+	cout << endl << b.size() << endl;
+	for(int i=b.size()-1;i>=0;i--)
+		cout << b[i] << " ";
+
+	if(v[n-1]!=v[n-2])
+		b.push_back(v[n-1]);
+	cout << endl;
 	return 0;
 
 }
