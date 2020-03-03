@@ -1,80 +1,22 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-
-char stack[100],val;
-int top=-1;
-void push(char val)
-{
-	top++;
-	stack[top]=val;
-}
-
-void pop()
-{
-	top--;
-}
-
 int main()
 {
-	int size = my_sizeof(stack)/my_sizeof(stack[0]);
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+
 	string s;
 	cin >> s;
 	for(int i=0;i<s.length();i++)
 	{
-		if(s[i]=='[' or s[i] =='{' or s[i] == '(')
-			push(s[i]);
+		if(s[i] == 'z')
+			s[i] = 'a';
 		else
 		{
-			if(size == 0)
-			{
-				cout << "false" << endl;
-				return 0;
-			}
-			else
-			{
-				char x;
-				switch(s[i])
-				{
-					case ')':
-					{
-						x = stack[top];
-						pop();
-						if(x == '{' or x == '[')
-						{
-							cout << "false" << endl;
-							return 0;
-						}
-						break;
-					}
-					case '}':
-					{
-						x = stack[top];
-						pop();
-						if(x == '(' or x == '[')
-						{
-							cout << "false" << endl;
-							return 0;
-						}
-						break;
-					}
-					case ']':
-					{
-						x = stack[top];
-						pop();
-						if(x == '{' or x == '(')
-						{
-							cout << "false" << endl;
-							return 0;
-						}
-						break;
-					}
-				}
-			}
+			int k= int(s[i]);
+			s[i]=char(k+1);
 		}
 	}
-	if(size == 0)
-		cout << "true" << endl;
-	else
-		cout << "false" << endl;
+	cout << s << endl;
 	return 0;
 }
+  
