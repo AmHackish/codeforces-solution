@@ -6,36 +6,24 @@ typedef long long int lli;
 
 int main(){
 	fast;
-	lli n,x=0,y=0;
+
+	int n;
 	cin >> n;
 
-	vector<lli> a(n),v(n);
-	for(lli i=0;i<n;i++)
+	vector<int> a(n);
+	for(int i=0;i<n;i++)
 		cin >> a[i];
 
-	v = a;
-	sort(v.begin(),v.end());
+	sort(a.begin(),a.end());
+	vector<int>ans;
+	for(int i=0;i<n;i++)
+		if(a[i]!=a[i+1])
+			ans.push_back(a[i]);
 
-	for(lli i=0;i<n-1;i++)
-	{
-		if(a[i]>a[i+1])
-		{
-			x = i;
-			break;
-		}
-	}
-	for(lli i=n-1;i>0;i--)
-	{
-		if(a[i]<a[i-1])
-		{
-			y = i;
-			break;
-		}
-	}
-	partial_sort(a.begin()+x,a.begin()+y,a.end());
-	if(a == v)
-		cout << "yes" << endl << x+1 << " " << y+1 << endl;
-	else
-		cout << "no" << endl; 
+	if(a[n-1]!=a[n-2])
+		ans.push_back(a[n-1]);
+
+	for(auto x:ans)
+		cout << x << " ";
 	return 0;
 }
