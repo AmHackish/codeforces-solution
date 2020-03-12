@@ -1,63 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define fast ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+
 int main()
 {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-
-	int d,sumtime,sum1=0,sum2=0;
-	cin >> d >> sumtime;
-
-	vector<pair<int,int>> time(d);
-	for(int i=0;i<d;i++)
-	{
-		cin >> time[i].first >> time[i].second;
-		sum1+= time[i].second;
-		sum2+= time[i].first;
-	}
-	if(sum1 < sumtime or sum2 > sumtime)
-		cout << "NO" << endl;
-	else
-	{
-		sumtime-= sum2;
-		if(sumtime!=0)
+	fast
+	int n,o;
+	cin >> n >> o;
+	vector<string> s(n);
+	for(int i=0;i<n;i++)
+		cin >> s[i];
+	sort(s.begin(),s.end());
+	int cnt=0;
+	for(int i=0;i<n;i++)
+		for(int j=i+1;j<n;j++)
 		{
-			for(int i=0;i<d;i++)
+			string t = "";
+			for(int k=0;k<o;k++)
 			{
-				if(time[i].first < time[i].second)
+				if(s[i][k] == s[j][k])
+					t.push_back(s[i][k]);
+				else
 				{
-					 if(time[i].second - time[i].first < sumtime)
-					{
-						sumtime-=(time[i].second - time[i].first);
-						time[i].first = time[i].second;
-					}
-					else
-					{
-						time[i].first+=sumtime;
-						sumtime=0;
-					}
-				}
-				if(sumtime == 0)
-				{
-					cout << "YES" << endl;
-					for(int j=0;j<d;j++)
-						cout << time[j].first << " ";
-					cout << endl;
-					return 0;
+					if(s[i][k]!='S' and s[j][k]!='S')
+						t.push_back('S');
+					else if(s[i][k]!='E' and s[j][k]!='E')
+						t.push_back('E');
+					else if(s[i][k]!='T' and s[j][k]!='T')
+						t.push_back('T');
 				}
 			}
-			cout << "NO" << endl;
+			int ki = -1;
+			if(binary_search(s.begin(), s.end(), t))
+			ki = lower_bound(s.begin(),s.end(), t)-s.begin();
+			if(ki != -1 and ki > i and ki > j)
+				cnt++;
 		}
-		else
-		{
-			cout << "YES" << endl;
-			for(int j=0;j<d;j++)
-				cout << time[j].first << " ";
-			cout << endl;
-			return 0;
-		}
-	}
-
+	cout << cnt << endl;
 	return 0;
 }
   
