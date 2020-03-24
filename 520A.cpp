@@ -3,29 +3,26 @@
 using namespace std;
 int main()
 {
-	int n,k=0;
-	cin >> n;
-	string s;
-	cin >> s;
-	vector<int> alpha(26);
-	for(int i=0; i<n; i++)
+	int t;
+	cin >> t;
+	while(t--)
 	{
-		if(s[i] >= 97)
-			alpha[s[i]-97]++;
-		else if(s[i] >=65 and s[i] <=90)
-			alpha[s[i]-65]++;
-	}
-	for(int i=0; i<26; i++)
-	{
-		if(alpha[i] == 0)
+		int n,ans;
+		cin >> n;
+		if(n == 1)
 		{
-			k++;
-			break;
+			cout << -1 << endl;
+			continue;
 		}
+		else
+		{
+			cout << 8;
+			n--;
+			for(int i=0;i<n;i++)
+				cout << 7;
+			
+		}
+		cout << endl;
 	}
-	if(k)
-		cout << "NO" << endl;
-	else
-		cout << "YES" << endl;
 	return 0;
 }
