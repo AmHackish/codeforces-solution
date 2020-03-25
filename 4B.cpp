@@ -3,35 +3,46 @@ using namespace std;
 
 int main()
 {
-	int n,k=0;
-	cin >> n;
-	vector<int> v(n);
-	for(int i=0;i<n;i++)
-		cin >> v[i];
-
-	int cnt=0;
-	for(int i=0;i<n;i++)
+	int t;
+	cin >> t;
+	while(t--)
 	{
-		if(v[i])
+		int cnt=0,n;
+		string a,b,c;
+		cin >> a >> b >> c;
+		n = a.length();
+		
+		for(int i=0;i<a.length();i++)
 		{
-			k++;
-			cnt = max(cnt,k);
+			if(a[i] != b[i])
+			{
+				if(a[i] == c[i])
+				{
+					swap(b[i],c[i]);
+					n--;
+				}
+				else if(b[i] == c[i])
+				{
+					swap(a[i],c[i]);
+					n--;
+				}
+				else
+				{
+					cnt++;
+					break;
+				}
+			}
+			cout << n << " ";
 		}
-		else
-			k=0;
-	}
-	if(v[n-1] == 1)
-	{
-		int x=1;
-		for(int i=0;i<n-1;i++)
+		if(cnt or n!=0)
+			cout << "NO" << endl;
+		else 
 		{
-			if(v[i])
-				x++;
+			if(a == b)
+				cout << "YES" << endl;
 			else
-				break;
+				cout << "NO" << endl;
 		}
-		cnt = max(cnt,x);
 	}
-	cout << cnt << endl;
 	return 0;
 }
