@@ -32,7 +32,14 @@ int main()
 					break;
 				}
 			}
-			cout << n << " ";
+			else
+			{
+				if(a[i] == c[i])
+				{
+					swap(a[i],c[i]);
+					n--;
+				}
+			}
 		}
 		if(cnt or n!=0)
 			cout << "NO" << endl;
