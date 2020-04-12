@@ -1,40 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define lli long long int
 
 int main()
 {
-	string s,t="";
+	int n,m;
+	cin >> n >> m;
+
+	string s;
 	cin >> s;
-	int i;
-	if(s.length() == 1 and s[0] == '.')
-		t+='0';
-	for(i=0;i<s.length()-1;)
+
+	while(m--)
 	{
-		if(s[i] == '.')
-		{
-			t+='0';
-			i++;
-		}
-		else if(s[i] == '-' and s[i+1] == '.')
-		{
-			t+='1';
-			i+=2;
-		}
-		else if(s[i] == '-' and s[i+1] == '-')
-		{
-			t+='2';
-			i+=2;
-		}
+		int l,r;
+		char c1,c2;
+		cin >> l >> r >> c1 >> c2;
+
+		l--;
+		r--;
+		for(int i=l;i<=r;i++)
+			if(s[i] == c1)
+				s[i] = c2;
 	}
-	if(s[s.length()-1]=='.')
-	{
-		if(s[s.length()-2]=='.')
-			t+='0';
-		else
-		{
-			if(t[t.length()-1] == '2')
-				t+='0';
-		}
-	}
-	cout << t << endl;
+	cout << s << endl;
+	return 0;
 }
